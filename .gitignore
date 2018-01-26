@@ -4,6 +4,7 @@ PWM_Set_STM32/
 RTE/
 PWM_Set_STM32.uvoptx
 PWM_Set_STM32.uvguix.*
+startup_stm32f745xx.lst
 
 # Prerequisites
 *.d
