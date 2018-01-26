@@ -1,3 +1,10 @@
+#User
+DebugConfig/
+PWM_Set_STM32/
+RTE/
+PWM_Set_STM32.uvoptx
+PWM_Set_STM32.uvguix.*
+
 # Prerequisites
 *.d
 
