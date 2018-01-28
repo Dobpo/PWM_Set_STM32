@@ -253,8 +253,11 @@ void USER_MAIN_ENC26J60_COM_Prepare(void) {
 	MODE_KV = (TCP_READ_BUFFER[TCP_DATA_START+4] << 8) + TCP_READ_BUFFER[TCP_DATA_START+5];
 	MODE_COUNT = ((TCP_READ_BUFFER[TCP_DATA_START+6] << 8) + TCP_READ_BUFFER[TCP_DATA_START+7]) * 1000000 / FLASH_SETTINGS[16];
 	//PB8->Tim10_CH1 - Config & Swich ON PWM (Anode glow)
+	//Tim10 must be config by CubeMX in tim.c or here by data from PC
+	HAL_TIM_PWM_Start(&htim10, TIM_CHANNEL_1);
 	
 	//PB13->Pin Set -  Anode rotatuin ON
+	HAL_GPIO_WritePin();
 	//PA4->DAC_OUT1 - Anode U
 	//PA5->DAC_OUT2 - Anode I
 	
@@ -274,6 +277,7 @@ void USER_MAIN_ENC26J60_COM_Xray(void){
 void USER_MAIN_ENC26J60_COM_Cancel(void){
 	TCP_WRITE_BUFFER[2] = TCP_READ_BUFFER[TCP_DATA_START+2];
   //PB8->Tim10_CH1 - Swich OFF PWM
+	HAL_TIM_PWM_Stop(&htim10, TIM_CHANNEL_1);
 	//PB13->Pin Reset -  Anode rotatuin OFF
 	USER_MAIN_ENC26J60_SendReply(3);
 }
