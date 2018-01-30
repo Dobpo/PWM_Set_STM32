@@ -257,7 +257,7 @@ void USER_MAIN_ENC26J60_COM_Prepare(void) {
 	HAL_TIM_PWM_Start(&htim10, TIM_CHANNEL_1);
 	
 	//PB13->Pin Set -  Anode rotatuin ON
-	HAL_GPIO_WritePin();
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);
 	//PA4->DAC_OUT1 - Anode U
 	//PA5->DAC_OUT2 - Anode I
 	
@@ -279,6 +279,7 @@ void USER_MAIN_ENC26J60_COM_Cancel(void){
   //PB8->Tim10_CH1 - Swich OFF PWM
 	HAL_TIM_PWM_Stop(&htim10, TIM_CHANNEL_1);
 	//PB13->Pin Reset -  Anode rotatuin OFF
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_RESET);
 	USER_MAIN_ENC26J60_SendReply(3);
 }
 
